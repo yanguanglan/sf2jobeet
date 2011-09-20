@@ -11,7 +11,7 @@ class ApiController extends Controller
 	/**
 	 * @Template()
 	 */
-	public function listAction($token, $category = false, $limit = false)
+	public function listAction($token, $_format, $category = false, $limit = false)
 	{
 		$aff = $this->getDoctrine()->getRepository('JobeetFrontendBundle:Affiliate')->findOneByToken($token);
 		if ($aff instanceof Affiliate && $aff->getIsActive())
@@ -31,6 +31,12 @@ class ApiController extends Controller
 					true
 				);
 				$jobs[$url] = $job->asArray();
+			}
+			switch ($_format)
+			{
+				case "yaml": 
+					$this->getRequest()->setFormat('yaml','text/yaml');
+					break;
 			}
 			return array('jobs' => $jobs);
 		}

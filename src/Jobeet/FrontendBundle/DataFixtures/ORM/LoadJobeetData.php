@@ -107,11 +107,11 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
        }
        
         $job = new Job();
-   		$job->setCategory($design);
+   		$job->setCategory($manager);
 	    $job->setType('part-time');
 	    $job->setCompany('Expires');
 	    $job->setUrl('http://www.fictional.com/');
-	    $job->setPosition('Designer');
+	    $job->setPosition('Manager');
 	    $job->setLocation('Tomorrow');
 	    $job->setDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in.
 	    
