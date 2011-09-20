@@ -1,6 +1,6 @@
 <?php
 /**
- * 1 test, 10 assertions
+ * 1 test, 12 assertions
  */
 
 namespace Jobeet\FrontendBundle\Tests\Controller;
