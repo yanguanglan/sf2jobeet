@@ -1,0 +1,26 @@
+{% extends 'JobeetFrontendBundle::layout.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/job.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block title %} Post a Job {% endblock %}
+
+{% form_theme form 'JobeetFrontendBundle:Form:fields.html.twig' %}
+{% block content %}
+<h1>{% block h1 %}New Job{% endblock %}</h1>
+<form action="{% block form_action %}{{ path('job_new') }}{% endblock %}" method="post" {{ form_enctype(form) }} novalidate>
+	<table id="job_form">
+		<tbody>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="2"><input type="submit" value="Preview your Job"></th>
+			</tr>
+		</tfoot>
+		<tbody>
+			{{ form_rest(form) }}
+		</tbody>
+	</table>	
+</form>
+{% endblock %}

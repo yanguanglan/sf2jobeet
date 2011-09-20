@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="{{ asset('bundles/frontend/css/main.css') }}" type="text/css" media="all" />
+        {% block css %}{% endblock %}
+        <title>{% block title %}Jobeet - Your best job board{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="alternate" type="application/atom+xml" title="Legfrissebb hirdetések" href="#"/>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/frontend/js/job_search.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/sonataadmin/jquery/jquery.form.js') }}"></script>
+        {% block js %}
+        {% endblock %}
+    </head>
+    <body>
+        <div id="container">
+			<div id="header">
+				<div class="content">
+					<h1><a href="{{ path('home') }}">
+						<img src="{{ asset('bundles/frontend/images/logo.jpg') }}" alt="Jobeet Job Board" />
+					</a></h1>
+					<div id="sub_header">
+						<div class="post">
+							<h2>Ask for people</h2>
+							<div>
+								<a href="{{ path('job_new') }}">Post a job</a>
+							</div>
+						</div>
+						<div class="search">
+							<h2>Ask for a job</h2>
+							<form action="{{ path('job_search') }}" method="get">
+								<input type="text" name="query" id="search_keywords" value="" />
+								<img id="loader" src="{{ asset('bundles/frontend/images/loader.gif') }}" style="vertical-align:middle;display:none" />
+								<input type="submit" value="Keresés" />
+								<div class="help">
+									Enter some keywords (city, country, position, ...)
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+			    {% if app.session.flash('notice') %}
+                <div class="flash-notice">
+                    <em>Notice</em>: {{ app.session.flash('notice') }}
+                </div>
+           		{% endif %}
+				{% if app.session.flash('error') %}
+                <div class="flash-error">
+                    <em>Error</em>: {{ app.session.flash('error') }}
+                </div>
+           		{% endif %}
+				<div id="job_history">
+					Recent viewed jobs
+					{% render 'JobeetFrontendBundle:Default:recent' %}
+					<hr>
+				</div>
+				 <div class="content">
+	                {% block content %}
+	                {% endblock %}
+	            </div>
+			</div>
+			<div id="footer">
+				<div class="content">
+					<span class="symfony">
+						<img src="{{ asset('bundles/frontend/images/jobeet-mini.png') }}" />
+						powered by <a href="http://www.symfony-project.org/">
+							<img src="{{ asset('bundles/frontend/images/logo_symfony.gif') }}" alt="symfony framework" width="100" />
+						</a>
+					</span>
+					<ul>
+						<li><a href="#">About Jobeet</a></li>
+						<li class="feed"><a href="{{ path('feed') }}">Full feed</a></li>
+						<li><a href="#">Jobeet API</a></li>
+						<li class="last"><a href="{{ path('affiliate_new') }}">Become an affiliate</a></li>
+					</ul>
+					<br />
+					nyelvválasztó
+				</div>
+			</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<div class="pagination">
+    <a href="{{ uri }}"> 
+      <img src="{{ asset('bundles/frontend/images/first.png') }}" alt="First page" title="First page" /> 
+    </a>
+    {% if page > 1 %}
+    <a href="{{ uri }}/{{ ( page - 1 ) }}">
+      <img src="{{ asset('bundles/frontend/images/previous.png') }}" alt="Previous page" title="Previous page" /> 
+    </a>
+    {% endif %}
+    {% set last = ( sum/max > 0 ? sum//max+1 : sum/max ) %}
+    {% for i in 1..last %}
+    	{% if page == i %} {{ i }}
+    	{% else %}
+    	<a href="{{ uri }}/{{ i }}">{{ i }}</a>
+    	{% endif %}
+    {% endfor %}
+    {% if page < last %}
+    <a href="{{ uri }}/{{ page+1 }}">
+      <img src="{{ asset('bundles/frontend/images/next.png') }}" alt="Next page" title="Next page" /> 
+    </a>
+    {% endif %}
+    <a href="{{ uri }}/{{ last }}"> 
+      <img src="{{ asset('bundles/frontend/images/last.png') }}" alt="Last page" title="Last page" /> 
+    </a> 
+</div>

@@ -1,0 +1,27 @@
+{% extends 'JobeetFrontendBundle::layout.html.twig' %}
+
+{% block title %} Become an affiliate {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/job.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% form_theme form 'JobeetFrontendBundle:Form:fields.html.twig' %}
+
+{% block content %}
+<h1>{% block h1 %}Become an affiliate{% endblock %}</h1>
+<form action="{{ path('affiliate_new') }}" method="post" {{ form_enctype(form) }} novalidate>
+	<table id="job_form">
+		<tbody>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th colspan="2"><input type="submit" value="Become an affiliate"></th>
+			</tr>
+		</tfoot>
+		<tbody>
+			{{ form_rest(form) }}
+		</tbody>
+	</table>	
+</form>
+{% endblock %}

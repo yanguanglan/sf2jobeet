@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			ul{
+				list-style-type:none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Dear Affiliate!</h1>
+		<h2>We have activated your account</h2>
+		<h3>Your token is: {{ token }}</h3>
+		From now, you can get our latest jobs in various formats like xml, json, or yaml.
+		You can build your own query with the URL:
+		<ul>
+			<li>
+				If you need all of the active jobs in the categories you have marked previously: {{ app.request.host }}/api/YOUR_TOKEN/jobs.DESIRED_FORMAT
+			</li>
+			<li>
+				If you want to limit the results: {{ app.request.host }}/api/YOUR_TOKEN/DESIRED_LIMIT/jobs.DESIRED_FORMAT
+			</li>
+			<li>
+				If you want all of the active jobs from a given category: {{ app.request.host }}/api/YOUR_TOKEN/DESIRED_CATEGORY/jobs.DESIRED_FORMAT
+			</li>
+			<li>
+				If you want to limit the results of a given category: {{ app.request.host }}/api/YOUR_TOKEN/DESIRED_CATEGORY/DESIRED_LIMIT/jobs.DESIRED_FORMAT
+			</li>
+		</ul>
+		Thank you for registering!
+		
+		Yours sincerely,
+		The Jobbet Staff
+	</body>
+</html>

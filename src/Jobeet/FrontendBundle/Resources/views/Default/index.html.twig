@@ -1,0 +1,29 @@
+{% extends 'JobeetFrontendBundle::layout.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block title %}Jobeet Jobs{% endblock %}
+
+{% block content %}
+<div id="jobs">
+	{% for cat in categories %}
+		<div class="category_{{ cat.getSlug }}">
+			<div class="category">
+				<div class="feed">
+					<a href="#">Feed</a>
+				</div>
+				<h1><a href="{{ path('category', { 'slug': cat.getSlug }) }}">{{ cat.getName }}</a></h1>
+			</div>
+			{% include "JobeetFrontendBundle:Job:list.html.twig" with { 'jobs':catrepo.getLimitedActiveJobs(cat,max_jobs) } %}
+			{% set sum_jobs = catrepo.countActiveJobs(cat) %}
+			{% if sum_jobs > max_jobs %}
+			<div class="more_jobs">
+				and <a href="{{ path('category',{'slug':cat.getSlug}) }}">{{ sum_jobs - max_jobs }}</a> more...
+			</div>
+			{% endif %}
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}

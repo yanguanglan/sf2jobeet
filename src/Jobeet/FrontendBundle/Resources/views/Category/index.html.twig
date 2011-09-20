@@ -1,0 +1,39 @@
+{% extends 'JobeetFrontendBundle::layout.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block title %}Jobeet jobs in {{ cat.getName }} category{% endblock %}
+
+{% block content %}
+<div class="category">
+	<div class="feed">
+		<a href="#">Feed</a>
+	</div>
+	<h1><a href="{{ path('category', { 'slug': cat.getSlug }) }}">{{ cat.getName }}</a></h1>
+</div>
+<table class="jobs">
+{% set i = 1 %}
+{% for job in catrepo.getPaginatedActiveJobs(cat,page,max_jobs) %}
+	<tr class="{{ i is odd ? 'odd' : 'even' }}">
+			<td class="location">
+				{{ job.getLocation }}
+			</td>
+			<td class="position">
+				<a href="{{ path('job_show', { 'company_slug': job.getSlug('company'), 'location_slug': job.getSlug('location'), 'id': job.getId, 'position_slug': job.getSlug('position') }) }}">
+					{{ job.getPosition }}
+				</a>
+			</td>
+			<td class="company">
+				{{ job.getCompany }}
+			</td>
+	</tr>
+	{% set i = i+1 %}
+{% endfor %}
+</table>
+{% set sum_jobs = catrepo.countActiveJobs(cat) %}
+{% if sum_jobs > max_jobs %}
+	{% include "JobeetFrontendBundle:Default:pagination.html.twig" with {'sum':sum_jobs,'max':max_jobs,'page':page,'uri':path('category',{'slug':cat.getSlug})} %}
+{% endif %}
+{% endblock %}

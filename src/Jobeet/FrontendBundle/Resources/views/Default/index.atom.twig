@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Jobeet</title>
+	<subtitle>Latest Jobs</subtitle>
+	<link href="{{ url('feed') }}" rel="self" />
+	<link href="{{ url('home') }}" />
+	<updated>{{ jobrepo.getLatestJobDate|date('Y-m-d H:i:s') }}</updated>
+	<author>
+		<name>Jobeet</name>
+	</author>
+	<id></id>
+	{# entries #}
+	{% for cat in categories %}
+		{% include "JobeetFrontendBundle:Job:list.atom.twig" with { 'jobs':catrepo.getLimitedActiveJobs(cat,max_jobs) } %}
+	{% endfor %}
+</feed>

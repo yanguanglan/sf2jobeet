@@ -1,0 +1,18 @@
+[submodule "src/Sonata/AdminBundle"]
+	path = src/Sonata/AdminBundle
+	url = git@github.com:sonata-project/SonataAdminBundle.git
+[submodule "src/Sonata/jQueryBundle"]
+	path = src/Sonata/jQueryBundle
+	url = git@github.com:sonata-project/SonatajQueryBundle.git
+[submodule "src/Sonata/BluePrintBundle"]
+	path = src/Sonata/BluePrintBundle
+	url = git@github.com:sonata-project/SonataBluePrintBundle.git
+[submodule "src/knplabs/Bundle/MenuBundle"]
+	path = src/knplabs/Bundle/MenuBundle
+	url = git@github.com:knplabs/KnpMenuBundle.git
+[submodule "vendor/doctrine-data-fixtures"]
+	path = vendor/doctrine-data-fixtures
+	url = https://github.com/doctrine/data-fixtures.git
+[submodule "vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle"]
+	path = vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle
+	url = https://github.com/symfony/DoctrineFixturesBundle.git

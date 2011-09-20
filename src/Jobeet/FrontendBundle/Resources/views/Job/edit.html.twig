@@ -1,0 +1,3 @@
+{% extends 'JobeetFrontendBundle:Job:new.html.twig' %}
+{% block h1 %}Edit Job{% endblock %}
+{% block form_action %}{{ path('job_edit',{ 'token':job.getToken }) }}{% endblock %}

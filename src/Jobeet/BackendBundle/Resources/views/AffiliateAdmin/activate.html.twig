@@ -1,0 +1,5 @@
+{% if object.getIsActive == false %}
+<a href="{{ path('admin_jobeet_frontend_affiliate_activate',{ 'token':object.getToken }) }}"><img src="{{ asset('bundles/sonataadmin/famfamfam/key.png') }}" alt="Activate" title="Activate"></a>
+{% else %}
+<a href="{{ path('admin_jobeet_frontend_affiliate_disable',{ 'token':object.getToken }) }}"><img src="{{ asset('bundles/sonataadmin/famfamfam/lock.png') }}" alt="Disable" title="Disable"></a>
+{% endif %}

@@ -1,0 +1,27 @@
+{% for job in jobs %}
+<entry>
+	<title>{{ job.getPosition }} ({{ job.getLocation }})</title>
+	<link href="{{ path('job_show', { 'company_slug': job.getSlug('company'), 'location_slug': job.getSlug('location'), 'id': job.getId, 'position_slug': job.getSlug('position') }) }}" />
+	<id>{{ job.getId }}</id>
+	<updated>{{ job.getCreatedAt|date('Y-m-d H:i:s') }}</updated>
+	<summary type="xhtml">
+		<div xmlns="http://www.w3.org/1999/xhtml">
+		{% if job.getLogo %}
+			<div>
+				<a href="{{ job.getUrl }}">
+					<img src="{{ asset('bundles/frontend/uploads/jobs/') }}{{ job.getLogo }}" alt="{{ job.getCompany }} logo" />
+				</a>
+			</div>
+		{% endif %}
+		<div>
+			{{ job.getDescription }}
+		</div>
+			<h4>How to apply?</h4>
+			<p>{{ job.getHowToApply }}</p>
+		</div>
+	</summary>
+	<author>
+		<name>{{ job.getCompany }}</name>
+	</author>
+</entry>
+{% endfor %}

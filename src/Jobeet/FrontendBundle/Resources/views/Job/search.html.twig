@@ -1,0 +1,15 @@
+{% extends "JobeetFrontendBundle::layout.html.twig" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+
+{% if found %}
+	{% include "JobeetFrontendBundle:Job:list.html.twig" with { 'jobs':jobs } %}
+{% else %}
+	No results.
+{% endif %}
+
+{% endblock %}

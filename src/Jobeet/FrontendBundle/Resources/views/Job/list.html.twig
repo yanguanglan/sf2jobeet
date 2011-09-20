@@ -1,0 +1,19 @@
+<table class="jobs">
+{% set i = 1 %}
+{% for job in jobs %}
+	<tr class="{{ i is odd ? 'odd' : 'even' }}">
+			<td class="location">
+				{{ job.getLocation }}
+			</td>
+			<td class="position">
+				<a href="{{ path('job_show', { 'company_slug': job.getSlug('company'), 'location_slug': job.getSlug('location'), 'id': job.getId, 'position_slug': job.getSlug('position') }) }}">
+					{{ job.getPosition }}
+				</a>
+			</td>
+			<td class="company">
+				{{ job.getCompany }}
+			</td>
+	</tr>
+	{% set i = i+1 %}
+{% endfor %}
+</table>

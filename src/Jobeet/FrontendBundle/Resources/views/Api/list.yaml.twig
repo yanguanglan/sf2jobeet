@@ -1,0 +1,7 @@
+{% for url, job in jobs %}
+{{ url }}:
+{% for key, value in job %}
+  {{ key }}: "{{ ( key == 'logo' and value ? app.request.host ~ asset('bundles/frontend/uploads/jobs/' ~ value) : value) }}"
+{% endfor %}
+
+{% endfor %}

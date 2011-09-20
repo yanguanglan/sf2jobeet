@@ -1,0 +1,7 @@
+<ul>
+	{% for job in history  %}
+	<li><a href="{{ path('job_show', { 'company_slug': job.getSlug('company'), 'location_slug': job.getSlug('location'), 'id': job.getId, 'position_slug': job.getSlug('position') }) }}">
+		{{ job.getPosition }} - {{ job.getLocation }}
+	</a></li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,117 @@
+JobeetBackendBundle:
+    resource: "@JobeetBackendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+JobeetFrontendBundle:
+    resource: "@JobeetFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+feed:
+  pattern: /feed
+  defaults: { _controller: JobeetFrontendBundle:Default:index, _format: atom }
+
+job_show:
+  pattern: /job/{company_slug}/{location_slug}/{id}/{position_slug}
+  defaults: { _controller: JobeetFrontendBundle:Job:show }
+  requirements:
+    id: \d+
+    _method: GET
+
+job_search:
+  pattern: /job/search
+  defaults: { _controller: JobeetFrontendBundle:Job:search }
+
+job_new:
+  pattern: /job/new
+  defaults: { _controller: JobeetFrontendBundle:Job:new }
+
+job_manage:
+  pattern: /job/{token}
+  defaults: { _controller: JobeetFrontendBundle:Job:manage }
+  requirements:
+#    token: \w{40}
+    _method: GET
+
+job_edit:
+  pattern: /job/{token}/edit
+  defaults: { _controller: JobeetFrontendBundle:Job:edit }
+  requirements:
+#    token: \w{40}
+
+job_publish:
+  pattern: /job/{token}/publish
+  defaults: { _controller: JobeetFrontendBundle:Job:publish }
+  requirements:
+#    token: \w{40}
+
+job_extend:
+  pattern: /job/{token}/extend
+  defaults: { _controller: JobeetFrontendBundle:Job:extend }
+  requirements:
+#    token: \w{40}
+
+job_delete:
+  pattern: /job/{token}/delete
+  defaults: { _controller: JobeetFrontendBundle:Job:delete }
+  requirements:
+#    token: \w{40}
+
+category:
+  pattern: /category/{slug}/{page}
+  defaults: { _controller: JobeetFrontendBundle:Category:index, page: 1 }
+  requirements:
+    _method: GET
+    page: \d+
+
+affiliate_new:
+  pattern: /affiliate/new
+  defaults: { _controller: JobeetFrontendBundle:Affiliate:new }
+
+api:
+  pattern: /api/{token}/jobs.{_format}
+  defaults: { _controller: JobeetFrontendBundle:Api:list }
+  requirements:
+#    token: \w{40}
+    _format: (?:xml|json|yaml)
+
+api_limit:
+  pattern: /api/{token}/{limit}/jobs.{_format}
+  defaults: { _controller: JobeetFrontendBundle:Api:list }
+  requirements:
+#    token: \w{40}
+    limit: \d+
+    _format: (?:xml|json|yaml)
+
+api_category:
+  pattern: /api/{token}/{category}/jobs.{_format}
+  defaults: { _controller: JobeetFrontendBundle:Api:list }
+  requirements:
+#    token: \w{40}
+    category: ([a-z\-]+)
+    _format: (?:xml|json|yaml)
+
+api_limit_category:
+  pattern: /api/{token}/{category}/{limit}/jobs.{_format}
+  defaults: { _controller: JobeetFrontendBundle:Api:list }
+  requirements:
+#    token: \w{40}
+    category: ([a-z\-]+)
+    limit: \d+
+    _format: (?:xml|json|yaml)
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    type: xml
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal

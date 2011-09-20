@@ -1,0 +1,38 @@
+{% extends 'JobeetFrontendBundle::layout.html.twig' %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ asset('bundles/frontend/css/job.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block title %} {{ job.getPosition }} at {{ job.getLocation }} {% endblock %}
+
+{% block content %}
+{% block adminbar %}{% endblock %}
+<div id="job"> 
+  <h1>{{ job.getCompany }}</h1> 
+  <h2>{{ job.getLocation }}</h2> 
+  <h3> 
+    {{ job.getPosition }}    <small> - </small> {{ job.getType }} 
+  </h3> 
+  
+  {% if job.getLogo %}
+	<div class="logo">
+		<a href="{{ job.getUrl }}">
+			<img src="{{ asset('bundles/frontend/uploads/jobs/') }}{{ job.getLogo }}" alt="{{ job.getCompany }} logo" />
+		</a>
+	</div>
+  {% endif %}
+  
+  <div class="description"> 
+    <p>{{ job.getDescription }}</p>  </div> 
+ 
+  <h4>How to apply?</h4> 
+ 
+  <p class="how_to_apply">{{ job.getHowToApply }}
+</p> 
+ 
+  <div class="meta"> 
+    <small>posted on {{ job.getCreatedAt|date("m/d/Y") }}</small> 
+  </div> 
+</div> 
+{% endblock %}

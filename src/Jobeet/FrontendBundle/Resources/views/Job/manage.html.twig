@@ -1,0 +1,26 @@
+{% extends 'JobeetFrontendBundle:Job:show.html.twig' %}
+{% block js %}
+<script type="text/javascript" src="{{ asset('bundles/frontend/js/job_manage.js') }}"></script>
+{% endblock %}
+{% block adminbar %}
+<div id="job_actions"> 
+	<h3>Admin</h3> 
+	<ul>
+		{% if job.getIsActivated != true %}
+		<li> <a href="{{ path('job_edit',{ 'token':job.getToken }) }}">Edit</a> </li>
+		<li> <a href="{{ path('job_publish',{ 'token':job.getToken }) }}">Publish</a> </li>
+		{% endif %}
+		<li> <a class="delete" href="{{ path('job_delete',{ 'token':job.getToken }) }}">Delete</a></li>
+		{% if job.getIsActivated %}
+		<li{% if job.expiresSoon %} class="expires_soon" {% endif %}>
+			{% if job.isExpired %}Expired
+			{% else %}Expires in <strong>{{ job.daysBeforeExpires }}</strong> days
+			{% endif %}
+			{% if job.expiresSoon %}<a href="{{ path('job_extend', { 'token': job.getToken }) }}">Extend for another 30 days</a>{% endif %}
+		</li>
+		{% else %}
+		<li> <small>[Bookmark this <a href="{{ path('job_manage',{ 'token':job.getToken }) }}">URL</a> to manage this job in the future.]</small> </li> 
+		{% endif %}
+	</ul> 
+</div>
+{% endblock %}
