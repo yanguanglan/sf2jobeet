@@ -61,7 +61,9 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
        $sensio->setIsActivated(true);
        $sensio->setToken('job_sensio_labs');
        $sensio->setEmail('job@example.com');
-       $sensio->setExpiresAt(new \DateTime('2012-10-10'));
+       $sensio->setCreatedAt(new \DateTime(date('Y-m-d',time())));
+       $sensio->setUpdatedAt($sensio->getCreatedAt());
+       $sensio->setExpiresAt(new \DateTime(date('Y-m-d', time() + 86400*30 )));
 
        $expired = new Job();
        $expired->setCategory($design);
@@ -77,6 +79,8 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
        $expired->setIsActivated(true);
        $expired->setToken('expired_job');
        $expired->setEmail('job@example.com');
+       $expired->setCreatedAt(new \DateTime(date('Y-m-d',time())));
+       $expired->setUpdatedAt($sensio->getCreatedAt());
        $expired->setExpiresAt(new \DateTime('2010-10-10'));
 
        $em->persist($sensio);
@@ -102,7 +106,9 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
 		    $job->setIsActivated(true);
 		    $job->setToken('job_'.$i);
 		    $job->setEmail('job@example.com');
-		    $job->setExpiresAt(new \DateTime('2011-12-10'));
+		    $job->setCreatedAt(new \DateTime(date('Y-m-d',time())));
+       		$job->setUpdatedAt($sensio->getCreatedAt());
+		    $job->setExpiresAt($sensio->getExpiresAt());
 		    $em->persist($job);
 		    $em->flush();
 		    $this->lucene->indexData($job->asIndexArray());
@@ -123,6 +129,8 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
 	    $job->setIsActivated(true);
 	    $job->setToken('job_extendable');
 	    $job->setEmail('job@example.com');
+	    $job->setCreatedAt(new \DateTime(date('Y-m-d',time())));
+       	$job->setUpdatedAt($sensio->getCreatedAt());
 	    $job->setExpiresAt(new \DateTime(date('Y-m-d',time() + 86400)));
 	    $em->persist($job);
 	    $em->flush();
@@ -136,6 +144,7 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
        $sensio->setToken("sensio_labs");
        $sensio->addCategory($design);
        $sensio->addCategory($programming);
+       $sensio->setCreatedAt(new \DateTime(date('Y-m-d',time())));
        
        $symfony = new Affiliate();
        $symfony->setUrl("http://www.symfony-project.org/");
@@ -144,6 +153,7 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
        $symfony->setToken("symfony");
        $symfony->addCategory($design);
        $symfony->addCategory($programming);
+       $symfony->setCreatedAt(new \DateTime(date('Y-m-d',time())));
        
        $em->persist($sensio);
        $em->persist($symfony);

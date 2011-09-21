@@ -20,6 +20,7 @@ $loader->registerNamespaces(array(
     'Knp\Menu'		   => __DIR__.'/../vendor/knp-menu/src', 
     'Zend'		  	   => __DIR__.'/../vendor',
     'Doctrine\\Tests'  => __DIR__.'/../vendor/doctrine/tests',
+    'FOS'              => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',
