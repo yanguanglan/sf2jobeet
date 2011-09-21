@@ -39,6 +39,7 @@ class MyLucene
 		}
 		
 		$index->addDocument($doc);
+		//$index->commit();
 	}
 	
 	public function findData($query)

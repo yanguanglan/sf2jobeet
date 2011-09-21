@@ -201,10 +201,7 @@ class JobControllerTest extends ControllerTestCase
 		$this->assertEquals(
 			$crawler->filter(sprintf('div#job_history a[href*=%d]',$job->getId()))->count(),
 			1
-		);
-		
-		$this->reloadFixtures();
-		$this->client->restart();
+		);		
 	}
 	
 	public function testShow()
@@ -220,13 +217,10 @@ class JobControllerTest extends ControllerTestCase
 	
 	public function testSearch()
 	{
-		$this->reloadFixtures();
-		// Ajax keresõ
+		// Keresõ
 		$crawler = $this->client->request(
 			'GET',
-			'/job/search?query=designer',
-			array(),array(),
-			array('X_REQUESTED_WITH' => 'XMLHttpRequest')
+			'/job/search?query=sens'
 		);
 		$this->assertEquals($crawler->filter('table tr')->count(),1);
 	}

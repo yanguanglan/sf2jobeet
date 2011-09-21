@@ -11,7 +11,6 @@ class ApiControllerTest extends ControllerTestCase
 {
 	public function testList()
 	{
-		//$this->reloadFixtures();
 		// azonosító kell a használathoz
 		$this->client->request('GET','/api/foo/jobs.xml');
 		$this->assertTrue($this->client->getResponse()->isNotFound());

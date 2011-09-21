@@ -11,7 +11,6 @@ class CategoryControllerTest extends ControllerTestCase
 {
 	public function testIndex()
 	{
-		$this->reloadFixtures();
 		// max n munka van listázva
 		$max = $this->container->getParameter('max_jobs_category');
 		$crawler = $this->client->request('GET','/category/programming');

@@ -186,7 +186,6 @@ class JobController extends Controller
 			$found = true;
 			$jobs = $this->getDoctrine()->getRepository('JobeetFrontendBundle:Job')->findJobsById($idx);
 		}
-		
 		if ($this->getRequest()->isXmlHttpRequest())
 		{
 			if (!$found) return new Response('No results.');

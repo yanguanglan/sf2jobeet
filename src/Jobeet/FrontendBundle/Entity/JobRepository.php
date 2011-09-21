@@ -97,7 +97,6 @@ class JobRepository extends EntityRepository
 		}
 		$q = $this->addActiveJobsQ($q)->getQuery()->setMaxResults(20);
 		return $q->getResult();
-		
 	}
 	
 	public function getActiveJobsForApi($category,$limit)

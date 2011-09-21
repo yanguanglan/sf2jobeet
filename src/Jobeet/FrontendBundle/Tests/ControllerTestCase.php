@@ -17,6 +17,7 @@ class ControllerTestCase extends WebTestCase
 		$this->client = static::createClient();
 		$this->container = $this->client->getContainer();
 		$this->_em = $this->container->get('doctrine.orm.entity_manager');
+		$this->reloadFixtures();
 	}
 	
 	/** 

@@ -81,6 +81,7 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
 
        $em->persist($sensio);
        $em->persist($expired);
+       $em->flush();
        $this->lucene->indexData($sensio->asIndexArray());
 	   
        $jobs = array();
@@ -103,6 +104,7 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
 		    $job->setEmail('job@example.com');
 		    $job->setExpiresAt(new \DateTime('2011-12-10'));
 		    $em->persist($job);
+		    $em->flush();
 		    $this->lucene->indexData($job->asIndexArray());
        }
        
@@ -123,6 +125,7 @@ class LoadJobeetData implements FixtureInterface, ContainerAwareInterface
 	    $job->setEmail('job@example.com');
 	    $job->setExpiresAt(new \DateTime(date('Y-m-d',time() + 86400)));
 	    $em->persist($job);
+	    $em->flush();
 	    $this->lucene->indexData($job->asIndexArray());
        
        // Affiliate
